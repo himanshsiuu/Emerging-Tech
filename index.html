@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaTech — Autonomous Emerging Tech Intelligence Agent</title>
+  <meta name="description" content="Frontier technology radar, autonomous deep-dive intelligence, and daily briefings across AI, Quantum, Biotech, Fusion Energy, and Robotics.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- App Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <div class="app-wrapper">
+    
+    <!-- Top Sticky Navigation Bar -->
+    <header class="navbar">
+      <div class="navbar-container">
+        <div class="brand" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+          <div class="brand-icon">
+            <i data-lucide="radar"></i>
+          </div>
+          <div class="brand-text">
+            <h1>NovaTech <span class="brand-badge">Radar v3.0</span></h1>
+          </div>
+        </div>
+
+        <div class="nav-actions">
+          <div id="api-status-badge" class="domain-btn" style="font-size:0.75rem;cursor:pointer;" onclick="App.openSettingsModal()" title="Configure AI Model & Keys">
+            <span class="pulse-dot" style="background:#0ea5e9"></span> Autonomous Engine
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="App.openSettingsModal()" title="Settings & WhatsApp Number">
+            <i data-lucide="sliders-horizontal"></i>
+            <span>Alerts & Config</span>
+          </button>
+          <button class="btn btn-secondary btn-icon-only" id="btn-theme-toggle" onclick="App.toggleTheme()" title="Toggle Theme">
+            <i data-lucide="sun"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="main-content">
+      
+      <!-- Hero Banner -->
+      <section class="hero-banner">
+        <div class="hero-tag">
+          <span class="pulse-dot"></span>
+          <span>Autonomous Frontier Technology Intelligence</span>
+        </div>
+        <h2 class="hero-title">
+          Track & Decode the Next Wave of <span class="gradient-text">Breakthrough Technologies</span>
+        </h2>
+        <p class="hero-subtitle">
+          Real-time radar tracking across Artificial Intelligence, Quantum Processors, CRISPR Epigenetics, High-Temperature Fusion, and Neural Interfaces.
+        </p>
+      </section>
+
+      <!-- Control Bar: Domain Filter Pills & Search -->
+      <div class="glass-panel control-bar">
+        <div class="domain-filters" id="domain-filter-group">
+          <!-- Injected dynamically -->
+        </div>
+
+        <div class="search-input-group">
+          <i data-lucide="search" class="search-icon" style="width: 15px; height: 15px;"></i>
+          <input type="text" id="tech-search-input" class="search-input" placeholder="Search emerging tech (e.g. Photonic, BCI, Fusion)...">
+        </div>
+      </div>
+
+      <!-- Main Layout: Radar / Tech Feed & Sidebar Briefing -->
+      <div class="tech-layout-grid">
+        
+        <!-- Left: Interactive Tech Radar & Grid Feed -->
+        <div class="flex-col gap-3">
+          
+          <!-- Radar Visualizer Panel -->
+          <div class="glass-panel radar-card">
+            <div class="radar-header">
+              <div>
+                <h3 style="font-size: 1.2rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <i data-lucide="disc" style="color: var(--primary-light)"></i> Frontier Technology Radar
+                </h3>
+                <p class="text-muted" style="font-size: 0.8rem;">Click any blip for full architectural breakdown and market impact.</p>
+              </div>
+              <div class="flex items-center gap-1">
+                <span class="chip ring-adopt" onclick="App.setRingFilter('adopt')">Adopt</span>
+                <span class="chip ring-trial" onclick="App.setRingFilter('trial')">Trial</span>
+                <span class="chip ring-assess" onclick="App.setRingFilter('assess')">Assess</span>
+                <span class="chip ring-hold" onclick="App.setRingFilter('hold')">Watch</span>
+                <span class="chip" onclick="App.setRingFilter('all')">Reset</span>
+              </div>
+            </div>
+
+            <!-- Canvas Element -->
+            <div class="radar-canvas-wrap">
+              <canvas id="radar-canvas"></canvas>
+            </div>
+
+            <!-- Radar Legend -->
+            <div class="radar-legend">
+              <div class="legend-item">
+                <span class="legend-ring-dot" style="background: #22c55e;"></span>
+                <span><strong>Adopt:</strong> Production Ready (TRL 8-9)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-ring-dot" style="background: #06b6d4;"></span>
+                <span><strong>Trial:</strong> Pilot Deployments (TRL 6-7)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-ring-dot" style="background: #f59e0b;"></span>
+                <span><strong>Assess:</strong> Breakthrough Proofs (TRL 4-5)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-ring-dot" style="background: #f43f5e;"></span>
+                <span><strong>Watch:</strong> Early Lab Concept (TRL 1-3)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Emerging Tech Feed Header -->
+          <div class="flex justify-between items-center" style="margin-top: 0.5rem;">
+            <h3 style="font-size: 1.25rem;"><i data-lucide="layers" style="color: var(--primary-light);"></i> Frontier Technologies Feed</h3>
+            <span class="text-muted" style="font-size: 0.82rem;">Updated Real-Time</span>
+          </div>
+
+          <!-- Cards Grid -->
+          <div class="tech-grid" id="tech-grid-container">
+            <!-- Tech cards injected dynamically -->
+          </div>
+
+        </div>
+
+        <!-- Right: Daily Briefing & AI Frontier Analyst Chat -->
+        <aside class="tech-sidebar">
+          
+          <!-- Morning Briefing Digest Card -->
+          <div class="glass-panel briefing-card">
+            <div class="flex justify-between items-center" style="margin-bottom: 0.85rem;">
+              <h3 style="margin-bottom: 0;">
+                <i data-lucide="newspaper" style="color: var(--accent-amber)"></i> Daily Tech Digest
+              </h3>
+              <span class="brand-badge" style="background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); border-color: rgba(245, 158, 11, 0.3);">
+                Today's Briefing
+              </span>
+            </div>
+
+            <p class="text-muted" id="briefing-macro-text" style="font-size: 0.82rem; margin-bottom: 1rem; line-height: 1.45;">
+              Loading executive intelligence summary...
+            </p>
+
+            <div id="briefing-items-list">
+              <!-- Briefing items injected -->
+            </div>
+
+            <button class="btn-whatsapp-briefing" style="margin-top: 0.85rem;" onclick="App.triggerWhatsAppDispatch()">
+              <i data-lucide="message-circle"></i> Send Digest to WhatsApp
+            </button>
+          </div>
+
+          <!-- AI Frontier Analyst Chatbot Box -->
+          <div class="glass-panel analyst-chat-box">
+            <h3><i data-lucide="bot" style="color: var(--primary-light)"></i> AI Frontier Analyst</h3>
+            
+            <div class="chat-history" id="analyst-chat-history">
+              <div class="chat-msg agent">
+                <strong>👋 Welcome to NovaTech Intelligence.</strong><br>
+                Ask me anything regarding frontier semiconductor architectures, quantum error correction, or fusion milestones!
+              </div>
+            </div>
+
+            <div class="flex" style="gap: 0.35rem; margin-bottom: 0.65rem; overflow-x: auto;">
+              <button class="chip" onclick="App.handleSendMessage('Explain Photonic AI Chips vs traditional GPUs')">Photonic vs GPUs</button>
+              <button class="chip" onclick="App.handleSendMessage('What is the current commercial timeline for HTS Fusion reactors?')">Fusion Status</button>
+              <button class="chip" onclick="App.handleSendMessage('Explain CRISPR epigenetic editing mechanism')">CRISPRoff</button>
+            </div>
+
+            <div class="chat-input-row">
+              <input type="text" id="chat-prompt-input" class="chat-prompt-input" placeholder="Ask AI analyst about any tech...">
+              <button class="btn btn-primary btn-sm" onclick="App.handleSendMessage()">
+                <i data-lucide="send"></i>
+              </button>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+
+    </main>
+
+    <!-- Modal: Deep Dive Technical Report -->
+    <div class="modal-backdrop" id="modal-deep-dive">
+      <div class="modal-card deep-dive-modal-card" style="max-height: 85vh;">
+        <div class="modal-body" id="deep-dive-modal-content">
+          <!-- Injected dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Settings & Alerts Configuration -->
+    <div class="modal-backdrop" id="modal-tech-settings">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3><i data-lucide="settings" style="color: var(--primary-light)"></i> NovaTech Intelligence Settings</h3>
+          <button class="btn btn-secondary btn-icon-only" onclick="App.closeSettingsModal()">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <div class="modal-body flex-col gap-2">
+          <p class="text-muted" style="font-size: 0.88rem;">
+            Configure your WhatsApp number to receive daily morning tech digests, and optionally connect your Gemini 3.7 API key for real-time deep-dive generation.
+          </p>
+
+          <div>
+            <label class="form-label" for="setting-user-phone">Your WhatsApp Number (for Daily Briefings)</label>
+            <input type="tel" id="setting-user-phone" class="form-input" style="padding-left: 1rem;" placeholder="e.g. +919876543210 or +14155552671">
+            <span class="label-hint" style="margin-top: 4px; display: block;">Include your country code (+91 for India, +1 for US).</span>
+          </div>
+
+          <div>
+            <label class="form-label" for="setting-gemini-model">Gemini Model</label>
+            <select id="setting-gemini-model" class="form-select" style="padding-left: 1rem;">
+              <option value="gemini-3.7-flash" selected>gemini-3.7-flash (Recommended)</option>
+              <option value="gemini-3.1-pro-preview">gemini-3.1-pro-preview (Deep Reasoning)</option>
+              <option value="gemini-2.5-flash">gemini-2.5-flash</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="form-label" for="setting-api-key">Google Gemini API Key (Optional)</label>
+            <input type="password" id="setting-api-key" class="form-input" style="padding-left: 1rem;" placeholder="AIzaSy...">
+            <span class="label-hint" style="margin-top: 4px; display: block;">Stored securely in your local environment.</span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="App.closeSettingsModal()">Cancel</button>
+          <button class="btn btn-primary" onclick="App.saveSettings()">Save Configuration</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CDN Scripts: Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Application Modules -->
+  <script src="js/storage.js"></script>
+  <script src="js/knowledge_base.js"></script>
+  <script src="js/tech_radar.js"></script>
+  <script src="js/tech_agent.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
