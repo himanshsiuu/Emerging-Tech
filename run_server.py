@@ -190,7 +190,9 @@ def main():
     except Exception:
         pass
 
-    with socketserver.TCPServer(("", port), NovaTechApiHandler) as httpd:
+    socketserver.TCPServer.allow_reuse_address = True
+    server_cls = getattr(http.server, "ThreadingHTTPServer", socketserver.ThreadingTCPServer)
+    with server_cls(("", port), NovaTechApiHandler) as httpd:
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
